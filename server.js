@@ -7,6 +7,9 @@ require('dotenv').config()
 const port = process.env.PORT || 5001
 const cors = require('cors');
 
+const compression = require('compression')
+
+
 try{
     mongoose.connect(process.env.MONGO_URL)
     console.log("MONGO DB CONNECTED")
@@ -16,6 +19,10 @@ try{
 
 const app = express()
 app.use(cors());
+
+app.use(compression({
+    level:7
+}))
 
 app.use(express.json())
 
